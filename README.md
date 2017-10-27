@@ -1,9 +1,8 @@
-# ReactJS Basics
 
-This repository accompanies my ReactJS / Redux - Basics YouTube Series.
-
-# Usage
-Switch to the branch you're interested in (branches = different stages in the series) and compare/ download the source code.
 
 ASYNC ACTIONS
 
+This contains basic react and redux setup along with webpack. 
+To use this download or clone into your local
+Then do npm install
+and then npm start
