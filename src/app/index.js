@@ -1,31 +1,32 @@
 import React from "react";
 import {render} from "react-dom";
 
-import { User } from './components/User';
-import { Main } from './components/Main';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createLogger } from "redux-logger";
+import { Provider } from "react-redux";
 
-class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            username: "Max"
-        };
-    }
+import App from './containers/App';
+import mathReducer from './reducers/mathReducer';
+import userReducer from './reducers/userReducer';
 
-    changeUsername(newName) {
-        this.setState({
-            username: newName
-        });
-    }
 
-    render() {
-        return (
-            <div className="container">
-                <Main changeUsername={this.changeUsername.bind(this)}/>
-                <User username={this.state.username}/>
-            </div>
-        );
-    }
-}
+const myLogger = (store) => (next) => (action) => {
+    console.log("This is the action", action);
+    next(action);
+ }
 
-render(<App />, window.document.getElementById('app'));
+store.dispatch({
+    type:"ADD",
+    payload:1000
+});
+
+store.dispatch({
+    type:"SUBTRACT",
+    payload:100
+});
+
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>, 
+    window.document.getElementById('app'));
